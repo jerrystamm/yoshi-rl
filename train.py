@@ -20,10 +20,8 @@ def train_model():
     model_path = "yoshi_train.zip"  
 
     if os.path.exists(model_path):
-        print("continue")
         model = PPO.load(model_path, env = env, verbose = 1, tensorboard_log = "./logs/", device = 'cuda')
     else:
-        print("no")
         model = PPO("CnnPolicy", env, verbose = 1, tensorboard_log = "./logs/", device = 'cuda')
 
     model.learn(total_timesteps=1000000)
